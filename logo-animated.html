@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malu Burguer's — Logo Animada</title>
+  <style>
+    /* =========================================================
+       MALU BURGUER'S — Premium logo animation
+       Loop ~5.5s · seamless · subtle cinematic
+       ========================================================= */
+    :root {
+      --red: #c41218;
+      --red-deep: #9e0e14;
+      --gold: #f0c14a;
+      --gold-soft: #f6d97a;
+      --flame-a: #ff8a1a;
+      --flame-b: #ffb020;
+      --flame-c: #ffe06a;
+      --loop: 5.5s;
+      --ease: cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 45%, #2a0a0c 0%, #120608 55%, #080304 100%);
+      font-family: system-ui, sans-serif;
+      color: rgba(255, 255, 255, 0.55);
+      overflow: hidden;
+    }
+
+    .stage {
+      position: relative;
+      width: min(88vw, 520px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+
+    /* Soft ambient light behind badge */
+    .stage::before {
+      content: "";
+      position: absolute;
+      width: 72%;
+      height: 72%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196, 18, 24, 0.35) 0%, transparent 70%);
+      filter: blur(28px);
+      animation: ambientBreath var(--loop) var(--ease) infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes ambientBreath {
+      0%, 100% { opacity: 0.55; transform: scale(0.98); }
+      50% { opacity: 0.85; transform: scale(1.04); }
+    }
+
+    /* ---- Badge unit ---- */
+    .logo {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      /* subtle badge breathing */
+      animation: badgeBreath var(--loop) var(--ease) infinite;
+      will-change: transform, filter;
+    }
+
+    @keyframes badgeBreath {
+      0%, 100% {
+        transform: scale(1);
+        filter: brightness(1);
+      }
+      50% {
+        transform: scale(1.018);
+        filter: brightness(1.04);
+      }
+    }
+
+    /* Intro squash & stretch on the whole mark (once + soft loop settle) */
+    .logo__settle {
+      width: 100%;
+      height: 100%;
+      transform-origin: 50% 58%;
+      animation: settleIn 1.15s var(--ease-soft) both,
+                 settleLoop var(--loop) var(--ease) 1.15s infinite;
+    }
+
+    @keyframes settleIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.92, 1.05);
+      }
+      45% {
+        opacity: 1;
+        transform: scale(1.03, 0.97);
+      }
+      70% {
+        transform: scale(0.99, 1.01);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1, 1);
+      }
+    }
+
+    /* Almost imperceptible micro-settle each loop for seamlessness */
+    @keyframes settleLoop {
+      0%, 88%, 100% { transform: scale(1, 1); }
+      92% { transform: scale(1.008, 0.994); }
+      96% { transform: scale(0.997, 1.004); }
+    }
+
+    .logo__base {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      /* Crop white square edges of the JPG to the circular badge */
+      clip-path: circle(49.2% at 50% 50%);
+      background: transparent;
+      user-select: none;
+      pointer-events: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Text glow / shine layers via masks over the logo */
+    .logo__shine {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      overflow: hidden;
+      mix-blend-mode: soft-light;
+      opacity: 0;
+      animation: shineSweep var(--loop) var(--ease-soft) infinite;
+    }
+
+    .logo__shine::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: -40%;
+      width: 42%;
+      height: 140%;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255, 240, 180, 0) 30%,
+        rgba(255, 245, 200, 0.55) 50%,
+        rgba(255, 240, 180, 0) 70%,
+        transparent 100%
+      );
+      transform: skewX(-12deg);
+    }
+
+    @keyframes shineSweep {
+      0%, 18% {
+        opacity: 0;
+      }
+      22% {
+        opacity: 0.7;
+      }
+      28% {
+        opacity: 0.85;
+      }
+      38% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .logo__shine::before {
+      animation: shineMove var(--loop) var(--ease-soft) infinite;
+    }
+
+    @keyframes shineMove {
+      0%, 18% { transform: translateX(0%) skewX(-12deg); }
+      40% { transform: translateX(320%) skewX(-12deg); }
+      100% { transform: translateX(320%) skewX(-12deg); }
+    }
+
+    /* Secondary soft gold pulse on MALU / BURGUER'S arcs — timed with fade */
+    .logo__text-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 42% 18% at 50% 18%, rgba(240, 193, 74, 0.35), transparent 70%),
+        radial-gradient(ellipse 48% 20% at 50% 86%, rgba(240, 193, 74, 0.32), transparent 70%);
+      mix-blend-mode: screen;
+      opacity: 0;
+      animation: textGlow var(--loop) var(--ease) infinite;
+    }
+
+    @keyframes textGlow {
+      0% { opacity: 0; }
+      12% { opacity: 0; }
+      22% { opacity: 0.55; }
+      32% { opacity: 0.25; }
+      50% { opacity: 0.4; }
+      70% { opacity: 0.22; }
+      100% { opacity: 0.28; }
+    }
+
+    /* DESDE 2020 delayed soft reveal glow on the white band */
+    .logo__desde-glow {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      pointer-events: none;
+      background: radial-gradient(
+        ellipse 70% 10% at 50% 50%,
+        rgba(255, 255, 255, 0.28),
+        transparent 70%
+      );
+      mix-blend-mode: soft-light;
+      opacity: 0;
+      animation: desdeGlow var(--loop) var(--ease) infinite;
+    }
+
+    @keyframes desdeGlow {
+      0%, 28% { opacity: 0; }
+      38% { opacity: 0.55; }
+      55% { opacity: 0.2; }
+      100% { opacity: 0.15; }
+    }
+
+    /* ---- Flame overlay (SVG) ---- */
+    .flames {
+      position: absolute;
+      left: 50%;
+      bottom: 17.5%;
+      width: 42%;
+      height: 22%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      overflow: visible;
+      z-index: 3;
+    }
+
+    .flames svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      display: block;
+    }
+
+    .flame {
+      transform-origin: 50% 100%;
+      transform-box: fill-box;
+    }
+
+    .flame--1 {
+      animation: flicker1 var(--loop) var(--ease) infinite;
+    }
+    .flame--2 {
+      animation: flicker2 var(--loop) var(--ease) infinite;
+      animation-delay: -0.7s;
+    }
+    .flame--3 {
+      animation: flicker3 var(--loop) var(--ease) infinite;
+      animation-delay: -1.4s;
+    }
+    .flame--4 {
+      animation: flicker4 var(--loop) var(--ease) infinite;
+      animation-delay: -0.35s;
+    }
+    .flame--5 {
+      animation: flicker5 var(--loop) var(--ease) infinite;
+      animation-delay: -1.9s;
+    }
+    .flame--core {
+      animation: corePulse var(--loop) var(--ease) infinite;
+    }
+
+    @keyframes flicker1 {
+      0%, 100% { transform: scaleY(1) scaleX(1) translateY(0); opacity: 0.72; }
+      20% { transform: scaleY(1.06) scaleX(0.97) translateY(-1%); opacity: 0.88; }
+      40% { transform: scaleY(0.96) scaleX(1.03) translateY(1%); opacity: 0.68; }
+      62% { transform: scaleY(1.08) scaleX(0.98) translateY(-2%); opacity: 0.92; }
+      80% { transform: scaleY(1.02) scaleX(1.01) translateY(0); opacity: 0.78; }
+    }
+
+    @keyframes flicker2 {
+      0%, 100% { transform: scaleY(1.02) scaleX(1) rotate(0deg); opacity: 0.7; }
+      25% { transform: scaleY(0.94) scaleX(1.04) rotate(-1.2deg); opacity: 0.82; }
+      50% { transform: scaleY(1.1) scaleX(0.96) rotate(1deg); opacity: 0.95; }
+      75% { transform: scaleY(0.98) scaleX(1.02) rotate(-0.5deg); opacity: 0.75; }
+    }
+
+    @keyframes flicker3 {
+      0%, 100% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 0.65; }
+      30% { transform: scaleY(1.09) scaleX(0.95) rotate(1.5deg); opacity: 0.9; }
+      55% { transform: scaleY(0.93) scaleX(1.05) rotate(-1deg); opacity: 0.7; }
+      78% { transform: scaleY(1.05) scaleX(0.98) rotate(0.6deg); opacity: 0.86; }
+    }
+
+    @keyframes flicker4 {
+      0%, 100% { transform: scaleY(0.98) translateY(0); opacity: 0.6; }
+      35% { transform: scaleY(1.12) translateY(-3%); opacity: 0.88; }
+      60% { transform: scaleY(0.95) translateY(1%); opacity: 0.66; }
+      85% { transform: scaleY(1.06) translateY(-1%); opacity: 0.8; }
+    }
+
+    @keyframes flicker5 {
+      0%, 100% { transform: scaleY(1) scaleX(1); opacity: 0.55; }
+      22% { transform: scaleY(1.07) scaleX(0.96); opacity: 0.78; }
+      48% { transform: scaleY(0.92) scaleX(1.04); opacity: 0.6; }
+      70% { transform: scaleY(1.1) scaleX(0.97); opacity: 0.85; }
+    }
+
+    @keyframes corePulse {
+      0%, 100% { opacity: 0.45; transform: scale(1, 1); }
+      40% { opacity: 0.7; transform: scale(1.05, 1.08); }
+      70% { opacity: 0.5; transform: scale(0.98, 0.96); }
+    }
+
+    /* Outer ring subtle opacity breath (premium pulse) */
+    .logo__ring {
+      position: absolute;
+      inset: 1.2%;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.12);
+      pointer-events: none;
+      animation: ringBreath var(--loop) var(--ease) infinite;
+      z-index: 4;
+    }
+
+    @keyframes ringBreath {
+      0%, 100% { opacity: 0.15; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.01); }
+    }
+
+    /* Caption under logo (preview page only) */
+    .meta {
+      position: fixed;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      z-index: 10;
+    }
+
+    .meta strong {
+      display: block;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      margin-bottom: 0.25rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    /* Transparent export mode: ?bg=transparent */
+    body.export-transparent {
+      background: transparent;
+    }
+
+    body.export-transparent .meta,
+    body.export-transparent .stage::before {
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo,
+      .logo__settle,
+      .logo__shine,
+      .logo__shine::before,
+      .logo__text-glow,
+      .logo__desde-glow,
+      .logo__ring,
+      .flame,
+      .flame--core,
+      .stage::before {
+        animation: none !important;
+      }
+      .logo__settle {
+        opacity: 1;
+        transform: none;
+      }
+      .logo__text-glow {
+        opacity: 0.25;
+      }
+      .flame {
+        opacity: 0.75;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stage" id="stage" aria-label="Malu Burguer's logo animada">
+    <div class="logo">
+      <div class="logo__settle">
+        <!-- Exact brand mark -->
+        <img
+          class="logo__base"
+          src="assets/logo.jpg"
+          alt="Malu Burguer's"
+          width="1024"
+          height="1024"
+          draggable="false"
+        />
+
+        <!-- Text gold glow (MALU / BURGUER'S) -->
+        <div class="logo__text-glow" aria-hidden="true"></div>
+
+        <!-- DESDE 2020 delayed soft band light -->
+        <div class="logo__desde-glow" aria-hidden="true"></div>
+
+        <!-- Shine sweep across mark -->
+        <div class="logo__shine" aria-hidden="true"></div>
+
+        <!-- Organic flame flicker overlay -->
+        <div class="flames" aria-hidden="true">
+          <svg viewBox="0 0 200 100" preserveAspectRatio="xMidYMax meet">
+            <defs>
+              <linearGradient id="gFlameA" x1="0.5" y1="1" x2="0.5" y2="0">
+                <stop offset="0%" stop-color="#ff6a00">
+                  <animate attributeName="stop-color"
+                    values="#ff6a00;#ff9a1a;#ff6a00;#ffb020;#ff6a00"
+                    dur="5.5s" repeatCount="indefinite" calcMode="spline"
+                    keySplines="0.45 0.05 0.55 0.95;0.45 0.05 0.55 0.95;0.45 0.05 0.55 0.95;0.45 0.05 0.55 0.95"
+                    keyTimes="0;0.25;0.5;0.75;1"/>
+                </stop>
+                <stop offset="55%" stop-color="#ffb020">
+                  <animate attributeName="stop-color"
+                    values="#ffb020;#ffe06a;#ff9a1a;#ffc94a;#ffb020"
+                    dur="5.5s" repeatCount="indefinite"/>
+                </stop>
+                <stop offset="100%" stop-color="#ffe9a0" stop-opacity="0.85">
+                  <animate attributeName="stop-color"
+                    values="#ffe9a0;#fff6c8;#ffd36a;#ffe9a0"
+                    dur="5.5s" repeatCount="indefinite"/>
+                </stop>
+              </linearGradient>
+              <linearGradient id="gFlameB" x1="0.5" y1="1" x2="0.5" y2="0">
+                <stop offset="0%" stop-color="#e85d00"/>
+                <stop offset="60%" stop-color="#ff9f1a"/>
+                <stop offset="100%" stop-color="#ffd24a" stop-opacity="0.9"/>
+              </linearGradient>
+              <linearGradient id="gCore" x1="0.5" y1="1" x2="0.5" y2="0">
+                <stop offset="0%" stop-color="#ffcc44" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#fff5c0" stop-opacity="0.5"/>
+              </linearGradient>
+              <filter id="softFlame" x="-40%" y="-40%" width="180%" height="180%">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="1.1" result="b"/>
+                <feMerge>
+                  <feMergeNode in="b"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+
+            <g filter="url(#softFlame)" opacity="0.92" style="mix-blend-mode: screen">
+              <!-- Left small -->
+              <path class="flame flame--4" fill="url(#gFlameB)"
+                d="M52 92 C48 78 40 70 44 52 C50 62 56 58 54 42 C62 54 68 64 66 92 Z"/>
+              <!-- Left mid -->
+              <path class="flame flame--2" fill="url(#gFlameA)"
+                d="M72 94 C66 76 58 66 62 44 C70 56 76 52 74 34 C84 48 90 62 88 94 Z"/>
+              <!-- Center tall -->
+              <path class="flame flame--1" fill="url(#gFlameA)"
+                d="M100 96 C92 74 84 62 90 36 C98 48 104 46 102 24 C112 40 120 58 116 78 C122 68 128 72 124 96 Z"/>
+              <!-- Right mid -->
+              <path class="flame flame--3" fill="url(#gFlameA)"
+                d="M128 94 C122 76 116 64 120 42 C128 54 134 50 132 32 C142 46 148 62 146 94 Z"/>
+              <!-- Right small -->
+              <path class="flame flame--5" fill="url(#gFlameB)"
+                d="M150 92 C146 78 140 70 144 54 C150 62 156 60 154 44 C162 56 168 68 164 92 Z"/>
+              <!-- Hot core -->
+              <ellipse class="flame--core" cx="100" cy="82" rx="22" ry="12" fill="url(#gCore)"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="logo__ring" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="meta">
+    <strong>Malu Burguer's</strong>
+    Loop 5.5s · premium · seamless
+  </p>
+
+  <script>
+    // Optional: transparent background for capture / export
+    // Open with ?bg=transparent or press "T"
+    (function () {
+      const params = new URLSearchParams(location.search);
+      if (params.get("bg") === "transparent") {
+        document.body.classList.add("export-transparent");
+      }
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "t" || e.key === "T") {
+          document.body.classList.toggle("export-transparent");
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
