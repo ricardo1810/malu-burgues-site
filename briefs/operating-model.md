@@ -2,12 +2,13 @@
 
 ## Escolha
 
-Usar **MazyOS + Orca + Claude Code + Codex Pro/Matt Pocock**.
+Usar **MazyOS + Orca + Hermes Agent no Orquestrador + Claude Code + Codex Pro/Matt Pocock**.
 
 ## Por quê
 
 - MazyOS organiza o cliente, a estratégia, a copy, SEO e marketing.
 - Orca permite trabalhar com agentes separados sem bagunçar a `main`.
+- Hermes Agent é melhor para orquestrar, manter memória, carregar skills e coordenar worktrees.
 - Claude Code é melhor para construir o site com contexto completo.
 - Codex Pro + Matt Pocock skills entram como fiscalização técnica.
 - OpenSquad oficial fica para depois, quando este processo virar produto repetível.
@@ -17,6 +18,7 @@ Usar **MazyOS + Orca + Claude Code + Codex Pro/Matt Pocock**.
 ```txt
 MazyOS = sistema operacional da agência
 Orca = salas separadas da equipe
+Hermes Agent = gerente/orquestrador
 Claude Code = construtor do site
 Codex/Matt Pocock = engenheiro sênior revisando
 OpenSquad = esteira de produção futura

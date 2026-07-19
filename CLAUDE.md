@@ -6,6 +6,7 @@ Este projeto usa:
 
 - MazyOS para memória, estratégia, copy, SEO e organização comercial.
 - Orca para separar agentes em worktrees.
+- Hermes Agent como Orquestrador principal e contato único com o usuário.
 - Claude Code para construir o site.
 - Codex Pro + Matt Pocock skills para revisão técnica e qualidade.
 

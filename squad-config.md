@@ -2,7 +2,7 @@
 
 ## Decisão de arquitetura
 
-Usar **MazyOS + Orca + Claude Code + Codex Pro/Matt Pocock**.
+Usar **MazyOS + Orca + Hermes Agent no Orquestrador + Claude Code + Codex Pro/Matt Pocock**.
 
 Não usar OpenSquad oficial neste momento. Ele fica como opção futura para transformar este processo em pipeline repetível.
 
@@ -12,6 +12,7 @@ Não usar OpenSquad oficial neste momento. Ele fica como opção futura para tra
 |---|---|
 | MazyOS | Memória do cliente, estratégia, copy, SEO, marketing e organização |
 | Orca | Worktrees/agentes separados, execução coordenada |
+| Hermes Agent | Orquestrador principal, memória, skills, coordenação e contato único |
 | Claude Code | Construção principal do site |
 | Codex Pro | QA técnico, revisão e ajustes cirúrgicos |
 | Matt Pocock skills | Padrão de engenharia, planejamento, grilling, revisão e qualidade |
@@ -20,7 +21,7 @@ Não usar OpenSquad oficial neste momento. Ele fica como opção futura para tra
 
 | Agente | Função | Base principal |
 |---|---|---|
-| Orquestrador | Coordenação e contato único | Orca + planejamento |
+| Orquestrador | Coordenação e contato único | Hermes Agent + Orca |
 | Brand | Identidade visual e brand guard | MazyOS + design skills |
 | Conteudo-MazyOS | Copy, SEO, cardápio e CTAs | MazyOS |
 | Site-Claude-Code | Implementação do site | Claude Code + design frontend |
@@ -30,6 +31,7 @@ Não usar OpenSquad oficial neste momento. Ele fica como opção futura para tra
 
 ### Orquestrador
 
+- hermes-agent
 - orca-cli
 - orca-worktree-orchestration
 - orca-multiagent-project-setup
@@ -87,14 +89,15 @@ WhatsApp.
 
 ## Pipeline
 
-1. Brand atualiza `identidade/design-guide.md` e `outputs/brand/identidade-extraida.md`.
-2. Conteudo-MazyOS atualiza `outputs/conteudo/`.
-3. Orquestrador consolida `briefs/brief-final-site.md`.
-4. Site-Claude-Code implementa em `site/`.
-5. QA-Codex-Pro gera revisão em `outputs/qa/`.
-6. Site-Claude-Code aplica correções.
-7. Orquestrador aprova contra `briefs/quality-gates.md`.
+1. Hermes Orquestrador coordena o trabalho e mantém contato único com o usuário.
+2. Brand atualiza `identidade/design-guide.md` e `outputs/brand/identidade-extraida.md`.
+3. Conteudo-MazyOS atualiza `outputs/conteudo/`.
+4. Hermes Orquestrador consolida `briefs/brief-final-site.md`.
+5. Site-Claude-Code implementa em `site/`.
+6. QA-Codex-Pro gera revisão em `outputs/qa/`.
+7. Site-Claude-Code aplica correções.
+8. Hermes Orquestrador aprova contra `briefs/quality-gates.md`.
 
 ## Regra de contato
 
-O usuário conversa apenas com o Orquestrador.
+O usuário conversa apenas com o Orquestrador Hermes.

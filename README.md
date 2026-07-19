@@ -5,6 +5,7 @@ Projeto estruturado para criar o site da Malu Burger’s usando a combinação r
 ```txt
 MazyOS = estratégia, cliente, memória, copy, SEO e marketing
 Orca = execução multiagente em worktrees separados
+Hermes Agent = Orquestrador principal e contato único
 Claude Code = construção principal do site
 Matt Pocock skills = qualidade técnica, planejamento e revisão
 Codex Pro = QA técnico e ajustes cirúrgicos
@@ -24,7 +25,7 @@ site/           implementação final do site
 ## Worktrees Orca
 
 ```txt
-C:\Users\ricar\malu-burgues-worktrees\Orquestrador
+C:\Users\ricar\malu-burgues-worktrees\Orquestrador      # Hermes Agent
 C:\Users\ricar\malu-burgues-worktrees\Brand
 C:\Users\ricar\malu-burgues-worktrees\Conteudo-MazyOS
 C:\Users\ricar\malu-burgues-worktrees\Site-Claude-Code
@@ -33,14 +34,14 @@ C:\Users\ricar\malu-burgues-worktrees\QA-Codex-Pro
 
 ## Fluxo recomendado
 
-1. Orquestrador abre o projeto e mantém contato único com o usuário.
+1. Orquestrador Hermes abre o projeto e mantém contato único com o usuário.
 2. Brand extrai identidade visual e atualiza `identidade/design-guide.md`.
 3. Conteudo-MazyOS cria copy, SEO local, cardápio e CTAs.
-4. Orquestrador consolida `briefs/brief-final-site.md`.
+4. Orquestrador Hermes consolida `briefs/brief-final-site.md`.
 5. Site-Claude-Code constrói o site em `site/`.
 6. QA-Codex-Pro revisa com padrão Matt Pocock.
 7. Site-Claude-Code corrige.
-8. Orquestrador aprova a entrega final.
+8. Orquestrador Hermes aprova a entrega final.
 
 ## OpenSquad oficial
 

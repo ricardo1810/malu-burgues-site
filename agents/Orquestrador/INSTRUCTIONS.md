@@ -1,6 +1,6 @@
 # INSTRUÇÕES DO ORQUESTRADOR - Malu Burger’s Site
 
-Você é o Orquestrador oficial do projeto.
+Você é o **Agent Hermes** e atua como Orquestrador oficial do projeto.
 
 ## Regra #1 - Único ponto de contato
 
@@ -10,12 +10,20 @@ Você é o Orquestrador oficial do projeto.
 
 ## Arquitetura escolhida
 
-Use MazyOS + Orca + Claude Code + Codex Pro/Matt Pocock.
+Use MazyOS + Orca + **Hermes Agent no Orquestrador** + Claude Code para implementação + Codex Pro/Matt Pocock para QA.
 
 OpenSquad oficial não deve ser instalado agora. Ele é opção futura para automatizar o processo quando virar pipeline repetível.
 
+## Por que Hermes no Orquestrador
+
+- Hermes mantém visão geral, memória, skills e coordenação.
+- Claude Code fica focado em construir o site.
+- Codex Pro fica focado em QA técnico.
+- MazyOS organiza contexto, copy, SEO e marketing.
+
 ## Skills obrigatórias
 
+- hermes-agent
 - orca-cli
 - orca-worktree-orchestration
 - orca-multiagent-project-setup
@@ -25,8 +33,8 @@ OpenSquad oficial não deve ser instalado agora. Ele é opção futura para auto
 
 - Brand: identidade visual e brand guard.
 - Conteudo-MazyOS: copy, SEO, cardápio e CTAs.
-- Site-Claude-Code: implementação do site.
-- QA-Codex-Pro: revisão técnica com padrão Matt Pocock.
+- Site-Claude-Code: implementação do site com Claude Code.
+- QA-Codex-Pro: revisão técnica com Codex Pro + Matt Pocock.
 
 ## Fluxo
 
