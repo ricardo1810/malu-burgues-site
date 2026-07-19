@@ -1,41 +1,46 @@
-# Squad - Malu Burger’s Site
+# Configuração operacional - Malu Burger’s Site
 
-## Objetivo
+## Decisão de arquitetura
 
-Criar um site one-page para a Malu Burger’s com fidelidade visual ao Instagram da marca, foco em cardápio, combos e pedidos pelo WhatsApp.
+Usar **MazyOS + Orca + Claude Code + Codex Pro/Matt Pocock**.
 
-## Regra principal
+Não usar OpenSquad oficial neste momento. Ele fica como opção futura para transformar este processo em pipeline repetível.
 
-O usuário fala apenas com o Orquestrador.
+## Responsabilidades por camada
+
+| Camada | Função |
+|---|---|
+| MazyOS | Memória do cliente, estratégia, copy, SEO, marketing e organização |
+| Orca | Worktrees/agentes separados, execução coordenada |
+| Claude Code | Construção principal do site |
+| Codex Pro | QA técnico, revisão e ajustes cirúrgicos |
+| Matt Pocock skills | Padrão de engenharia, planejamento, grilling, revisão e qualidade |
 
 ## Agentes
 
-| Agente | Ferramenta | Função |
+| Agente | Função | Base principal |
 |---|---|---|
-| Orquestrador | Hermes/Orca/Claude | Coordenação geral |
-| Brand | Claude + Taste/OpenSquad | Identidade visual |
-| Conteudo-MazyOS | Claude + MazyOS | Copy, SEO e estratégia comercial |
-| Site-Claude-Code | Claude Code | Criação do site |
-| QA-Codex-Pro | Codex Pro | Revisão técnica e qualidade |
+| Orquestrador | Coordenação e contato único | Orca + planejamento |
+| Brand | Identidade visual e brand guard | MazyOS + design skills |
+| Conteudo-MazyOS | Copy, SEO, cardápio e CTAs | MazyOS |
+| Site-Claude-Code | Implementação do site | Claude Code + design frontend |
+| QA-Codex-Pro | Revisão técnica | Codex + Matt Pocock skills |
 
-## Skills obrigatórias
+## Skills obrigatórias por agente
 
 ### Orquestrador
 
-- orca-worktree-orchestration
 - orca-cli
-- opensquad
-- opensquad-squad-config
-- opensquad-squad-management
-- brand-aligned-website-process
+- orca-worktree-orchestration
+- orca-multiagent-project-setup
 - plan
 
 ### Brand
 
 - brandkit
-- high-end-visual-design
-- design-taste-frontend
 - brand-aligned-website-process
+- design-taste-frontend
+- high-end-visual-design
 - redesign-existing-projects
 
 ### Conteudo-MazyOS
@@ -68,7 +73,7 @@ O usuário fala apenas com o Orquestrador.
 
 WhatsApp.
 
-## Seções obrigatórias
+## Seções obrigatórias do site
 
 1. Hero
 2. Combos em destaque
@@ -80,32 +85,16 @@ WhatsApp.
 8. CTA final
 9. Footer
 
-## Não negociáveis de marca
-
-- Vermelho e amarelo como base visual.
-- Hambúrguer como protagonista.
-- Layout apetitoso, popular e direto.
-- CTA claro para pedido.
-- Visual mobile excelente.
-- Site deve parecer uma extensão natural do Instagram.
-
-## Proibido
-
-- Estética SaaS/tech.
-- Minimalismo frio.
-- Paleta bege gourmet genérica.
-- Gradientes roxo/azul de IA.
-- Copy corporativa.
-- Cards genéricos iguais.
-- Visual premium distante da realidade local da hamburgueria.
-
 ## Pipeline
 
-1. Orquestrador valida a estrutura do squad.
-2. Brand gera `outputs/brand/identidade-extraida.md`.
-3. Conteudo-MazyOS gera `outputs/conteudo/copy-site.md`, `seo-local.md`, `estrutura-cardapio.md` e `ctas-whatsapp.md`.
-4. Orquestrador consolida `briefs/brief-final-site.md`.
-5. Site-Claude-Code implementa o site em `site/`.
-6. QA-Codex-Pro revisa e registra problemas em `outputs/qa/`.
-7. Site-Claude-Code corrige.
-8. Orquestrador faz a revisão final de marca.
+1. Brand atualiza `identidade/design-guide.md` e `outputs/brand/identidade-extraida.md`.
+2. Conteudo-MazyOS atualiza `outputs/conteudo/`.
+3. Orquestrador consolida `briefs/brief-final-site.md`.
+4. Site-Claude-Code implementa em `site/`.
+5. QA-Codex-Pro gera revisão em `outputs/qa/`.
+6. Site-Claude-Code aplica correções.
+7. Orquestrador aprova contra `briefs/quality-gates.md`.
+
+## Regra de contato
+
+O usuário conversa apenas com o Orquestrador.

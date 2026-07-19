@@ -1,25 +1,47 @@
-# Malu Burger’s Site Squad
+# Malu Burger’s Site
 
-Squad Orca para criação de um site one-page da Malu Burger’s, com fidelidade visual à marca do Instagram e foco em pedidos via WhatsApp.
+Projeto estruturado para criar o site da Malu Burger’s usando a combinação recomendada:
 
-## Objetivo
+```txt
+MazyOS = estratégia, cliente, memória, copy, SEO e marketing
+Orca = execução multiagente em worktrees separados
+Claude Code = construção principal do site
+Matt Pocock skills = qualidade técnica, planejamento e revisão
+Codex Pro = QA técnico e ajustes cirúrgicos
+```
 
-Criar um site local, apetitoso, mobile-first e comercial para a Malu Burger’s.
+## Estrutura principal
 
-## Agentes
+```txt
+_memoria/       contexto do negócio/projeto
+identidade/     guia visual e direção de marca
+briefs/         escopo e decisões do site
+agents/         instruções de cada agente
+outputs/        entregas intermediárias
+site/           implementação final do site
+```
 
-- Orquestrador: coordenação e contato único com o usuário.
-- Brand: extração e guarda da identidade visual.
-- Conteudo-MazyOS: copy, SEO local, cardápio e CTAs.
-- Site-Claude-Code: implementação principal do site.
-- QA-Codex-Pro: revisão técnica, acessibilidade, performance e qualidade.
+## Worktrees Orca
 
-## Fluxo
+```txt
+C:\Users\ricar\malu-burgues-worktrees\Orquestrador
+C:\Users\ricar\malu-burgues-worktrees\Brand
+C:\Users\ricar\malu-burgues-worktrees\Conteudo-MazyOS
+C:\Users\ricar\malu-burgues-worktrees\Site-Claude-Code
+C:\Users\ricar\malu-burgues-worktrees\QA-Codex-Pro
+```
 
-1. Brand extrai identidade visual.
-2. Conteudo-MazyOS cria copy, SEO e estrutura comercial.
-3. Orquestrador consolida o brief final.
-4. Site-Claude-Code implementa.
-5. QA-Codex-Pro revisa.
-6. Site-Claude-Code corrige.
-7. Orquestrador aprova a entrega final.
+## Fluxo recomendado
+
+1. Orquestrador abre o projeto e mantém contato único com o usuário.
+2. Brand extrai identidade visual e atualiza `identidade/design-guide.md`.
+3. Conteudo-MazyOS cria copy, SEO local, cardápio e CTAs.
+4. Orquestrador consolida `briefs/brief-final-site.md`.
+5. Site-Claude-Code constrói o site em `site/`.
+6. QA-Codex-Pro revisa com padrão Matt Pocock.
+7. Site-Claude-Code corrige.
+8. Orquestrador aprova a entrega final.
+
+## OpenSquad oficial
+
+Não é a base deste projeto agora. Pode ser adicionado depois, quando este fluxo virar um pipeline repetível para vários clientes.

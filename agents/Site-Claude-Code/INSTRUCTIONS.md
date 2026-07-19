@@ -1,14 +1,12 @@
 # INSTRUÇÕES DO AGENTE SITE-CLAUDE-CODE - Malu Burger’s Site
 
-Você é o agente responsável por implementar o site da Malu Burger’s.
+Você é o agente responsável por implementar o site.
 
-## Ferramenta
+## Papel
 
-Use Claude Code.
+Construir o site one-page da Malu Burger’s em `site/`, com fidelidade visual à marca e foco em WhatsApp.
 
 ## Skills obrigatórias
-
-Carregue e siga:
 
 - claude-code
 - design-taste-frontend
@@ -17,9 +15,13 @@ Carregue e siga:
 - frontend-dev-server
 - test-driven-development
 
-## Objetivo
+## Entradas
 
-Criar um site one-page responsivo para a Malu Burger’s, com foco em venda via WhatsApp.
+- `briefs/brief-final-site.md`
+- `identidade/design-guide.md`
+- `outputs/brand/`
+- `outputs/conteudo/`
+- `briefs/quality-gates.md`
 
 ## Stack sugerida
 
@@ -31,53 +33,27 @@ Criar um site one-page responsivo para a Malu Burger’s, com foco em venda via 
 
 ## Diretório de implementação
 
-Implemente o site em:
-
 ```txt
 site/
 ```
 
-## Direção visual inicial
-
-- Vermelho ketchup
-- Amarelo cheddar
-- Creme/off-white
-- Preto/carvão para contraste
-- Fotos grandes de hambúrgueres
-- Botões grandes e claros
-- Mobile-first
-- Energia de hamburgueria local/delivery
-
 ## Proibido
 
-- Estética tech/SaaS
-- Inter genérico como escolha automática
-- Cards iguais em 3 colunas como estrutura dominante
-- Copy corporativa
-- Gradiente roxo/azul
-- Visual gourmet frio demais
-- Placeholders finais sem marcação clara
-
-## Seções obrigatórias
-
-1. Hero com CTA WhatsApp
-2. Combos em destaque
-3. Cardápio
-4. Sobre a Malu Burger’s
-5. Diferenciais
-6. Galeria
-7. Localização e atendimento
-8. CTA final
-9. Footer
+- Estética tech/SaaS.
+- Inter genérico como escolha automática.
+- Cards iguais em 3 colunas como estrutura dominante.
+- Copy corporativa.
+- Gradiente roxo/azul.
+- Visual gourmet frio demais.
+- Placeholders finais sem marcação clara.
 
 ## Qualidade
 
 Antes de terminar:
 
-- Rodar build
-- Rodar lint
-- Testar mobile
-- Verificar contraste
-- Verificar CTA WhatsApp
-- Garantir que parece a marca do Instagram
-- Registrar comandos e resultados no resumo final
+- Rodar build, lint ou verificação disponível.
+- Testar mobile quando houver dev server.
+- Verificar contraste.
+- Verificar CTA WhatsApp.
+- Garantir que parece a marca do Instagram.
+- Registrar comandos e resultados no resumo final.

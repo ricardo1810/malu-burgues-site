@@ -1,8 +1,19 @@
-# Claude Code context - Malu Burger’s Site
+# Projeto - Malu Burger’s Site
 
-## Projeto
+## Arquitetura escolhida
 
-Site one-page da Malu Burger’s, hamburgueria local com visual vermelho/amarelo e foco em pedidos via WhatsApp.
+Este projeto usa:
+
+- MazyOS para memória, estratégia, copy, SEO e organização comercial.
+- Orca para separar agentes em worktrees.
+- Claude Code para construir o site.
+- Codex Pro + Matt Pocock skills para revisão técnica e qualidade.
+
+OpenSquad oficial não é usado agora. Só entra depois se o processo precisar virar pipeline repetível.
+
+## Marca
+
+Malu Burger’s é uma hamburgueria local com identidade vermelha/amarela, logo circular com hambúrguer e comunicação popular, direta e apetitosa.
 
 ## Regras de marca
 
@@ -18,11 +29,16 @@ Site one-page da Malu Burger’s, hamburgueria local com visual vermelho/amarelo
 - HTML semântico.
 - CTA WhatsApp claro.
 - SEO local básico.
-- Rodar build e lint antes de entregar.
+- Rodar verificação disponível antes de entregar.
+- Antes de commit, revisar diff e manter o código simples.
 
 ## Arquivos importantes
 
 - `squad-config.md`
+- `_memoria/empresa.md`
+- `_memoria/preferencias.md`
+- `_memoria/estrategia.md`
+- `identidade/design-guide.md`
 - `briefs/brand-brief.md`
 - `briefs/site-scope.md`
 - `briefs/quality-gates.md`
