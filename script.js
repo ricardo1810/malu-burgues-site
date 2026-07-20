@@ -1,9 +1,9 @@
 (function () {
   "use strict";
 
-  const header = document.getElementById("header");
-  const burger = document.getElementById("burger");
-  const nav = document.getElementById("nav");
+  const header = document.getElementById("topbar");
+  const burger = document.getElementById("menuButton");
+  const nav = document.getElementById("topnav");
   const year = document.getElementById("year");
 
   if (year) year.textContent = String(new Date().getFullYear());
@@ -17,13 +17,17 @@
 
   if (burger && nav) {
     burger.addEventListener("click", () => {
-      burger.classList.toggle("open");
-      nav.classList.toggle("open");
+      const isOpen = burger.classList.toggle("open");
+      nav.classList.toggle("open", isOpen);
+      burger.setAttribute("aria-expanded", String(isOpen));
+      burger.setAttribute("aria-label", isOpen ? "Fechar menu" : "Abrir menu");
     });
     nav.querySelectorAll("a").forEach((a) => {
       a.addEventListener("click", () => {
         burger.classList.remove("open");
         nav.classList.remove("open");
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Abrir menu");
       });
     });
   }
@@ -46,9 +50,8 @@
     reveals.forEach((el) => el.classList.add("visible"));
   }
 
-  // Hero video: ensure autoplay + seamless loop
-  const heroVideo = document.querySelector(".hero__video");
-  if (heroVideo) {
+  // Hero videos: ensure autoplay + seamless loop.
+  document.querySelectorAll(".logo-ring video, .hero-bg-video, .gallery-media video").forEach((heroVideo) => {
     heroVideo.muted = true;
     heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
@@ -78,5 +81,5 @@
       heroVideo.currentTime = 0;
       heroVideo.play().catch(() => {});
     });
-  }
+  });
 })();
