@@ -5,6 +5,8 @@
   const burger = document.getElementById("menuButton");
   const nav = document.getElementById("topnav");
   const year = document.getElementById("year");
+  const cheddarScroll = document.querySelector(".cheddar-scroll");
+  const hero = document.querySelector(".hero");
 
   if (year) year.textContent = String(new Date().getFullYear());
 
@@ -14,6 +16,71 @@
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
+
+  function scrollRange() {
+    return Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+  }
+
+  function clamp01(value) {
+    return Math.min(1, Math.max(0, value));
+  }
+
+  function setScrollProgress() {
+    const progress = clamp01(window.scrollY / scrollRange());
+    const offset = progress * Math.max(0, window.innerHeight - 186);
+    const heroExit = hero ? hero.offsetTop + hero.offsetHeight * 0.82 : window.innerHeight * 0.75;
+    const fadeIn = clamp01((window.scrollY - heroExit) / 180);
+    const fadeOut = clamp01((0.92 - progress) / 0.08);
+    const visibility = Math.min(fadeIn, fadeOut);
+    const isInteractive = visibility > 0.75;
+    document.documentElement.style.setProperty("--scroll-progress", progress.toFixed(4));
+    document.documentElement.style.setProperty("--scroll-y", `${offset.toFixed(1)}px`);
+    document.documentElement.style.setProperty("--scroll-visibility", visibility.toFixed(3));
+    document.documentElement.style.setProperty("--scroll-peek", `${((1 - visibility) * 0.45).toFixed(3)}rem`);
+    if (cheddarScroll) {
+      cheddarScroll.classList.toggle("is-interactive", isInteractive);
+      cheddarScroll.tabIndex = isInteractive ? 0 : -1;
+      cheddarScroll.setAttribute("aria-hidden", String(!isInteractive));
+      cheddarScroll.setAttribute("aria-valuenow", String(Math.round(progress * 100)));
+    }
+  }
+
+  function scrollToPointer(clientY) {
+    if (!cheddarScroll) return;
+    const rect = cheddarScroll.getBoundingClientRect();
+    const progress = clamp01((clientY - rect.top) / rect.height);
+    window.scrollTo({ top: progress * scrollRange(), behavior: "auto" });
+  }
+
+  window.addEventListener("scroll", setScrollProgress, { passive: true });
+  window.addEventListener("resize", setScrollProgress);
+  setScrollProgress();
+
+  if (cheddarScroll) {
+    cheddarScroll.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      cheddarScroll.setPointerCapture(event.pointerId);
+      scrollToPointer(event.clientY);
+    });
+    cheddarScroll.addEventListener("pointermove", (event) => {
+      if (cheddarScroll.hasPointerCapture(event.pointerId)) scrollToPointer(event.clientY);
+    });
+    cheddarScroll.addEventListener("keydown", (event) => {
+      const page = window.innerHeight * 0.85;
+      const keys = {
+        ArrowDown: 80,
+        ArrowUp: -80,
+        PageDown: page,
+        PageUp: -page,
+        Home: -Infinity,
+        End: Infinity,
+      };
+      if (!(event.key in keys)) return;
+      event.preventDefault();
+      const next = keys[event.key] === Infinity ? scrollRange() : keys[event.key] === -Infinity ? 0 : window.scrollY + keys[event.key];
+      window.scrollTo({ top: next, behavior: "auto" });
+    });
+  }
 
   if (burger && nav) {
     burger.addEventListener("click", () => {

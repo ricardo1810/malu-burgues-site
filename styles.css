@@ -18,7 +18,17 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
 body {
   margin: 0;
   font-family: var(--body);
@@ -44,24 +54,27 @@ body::before {
 .cheddar-scroll {
   position: fixed;
   top: 96px;
-  right: max(0.8rem, calc((100vw - var(--page-max)) / 2 - 4.7rem));
+  right: clamp(0.35rem, 1vw, 1.1rem);
   z-index: 25;
   width: 82px;
   height: calc(100dvh - 132px);
-  /* Hide the optional ornament in browsers without scroll-linked animations. */
-  opacity: 0;
+  opacity: var(--scroll-visibility, 0);
   pointer-events: none;
+  cursor: grab;
+  touch-action: none;
+  transform: translateX(var(--scroll-peek, 0.45rem));
+  transition: opacity 220ms var(--ease), transform 220ms var(--ease);
+}
+.cheddar-scroll.is-interactive { pointer-events: auto; }
+.cheddar-scroll:active { cursor: grabbing; }
+.cheddar-scroll:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 4px;
+  border-radius: 999px;
 }
 .cheddar-scroll::after {
   content: "";
   display: none;
-}
-@supports (animation-timeline: scroll(root)) {
-  .cheddar-scroll {
-    opacity: 0;
-    animation: cheddar-presence linear both;
-    animation-timeline: scroll(root);
-  }
 }
 .cheddar-track {
   position: absolute;
@@ -80,10 +93,8 @@ body::before {
   inset: 0;
   border-radius: inherit;
   background: linear-gradient(180deg, var(--yellow), #f5a51b 72%, var(--orange));
-  transform: scaleY(0);
+  transform: scaleY(var(--scroll-progress, 0));
   transform-origin: top;
-  animation: cheddar-fill linear both;
-  animation-timeline: scroll(root);
 }
 .cheddar-fries {
   position: absolute;
@@ -93,17 +104,8 @@ body::before {
   width: 82px;
   max-width: none;
   filter: drop-shadow(0 12px 18px rgba(23, 18, 15, 0.28));
-  transform: translate(-50%, 0) rotate(118deg);
+  transform: translate(-50%, var(--scroll-y, 0px)) rotate(118deg);
   transform-origin: center;
-  animation: fries-drop linear both;
-  animation-timeline: scroll(root);
-}
-@keyframes cheddar-fill { to { transform: scaleY(1); } }
-@keyframes fries-drop { to { transform: translate(-50%, calc(100dvh - 186px)) rotate(118deg); } }
-@keyframes cheddar-presence {
-  0%, 9% { opacity: 0; }
-  13%, 88% { opacity: 1; }
-  96%, 100% { opacity: 0; }
 }
 
 a { color: inherit; text-decoration: none; }
@@ -208,14 +210,14 @@ img, video { display: block; max-width: 100%; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  width: min(var(--page-max), calc(100% - 32px));
+  width: 100%;
   min-height: calc(76dvh - 72px);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
   align-items: center;
   gap: clamp(1.5rem, 5vw, 4rem);
-  padding: 2rem 0 2.25rem;
+  padding: 2rem max(1rem, calc((100vw - var(--page-max)) / 2)) 2.25rem;
 }
 .hero::after {
   content: "";
@@ -260,9 +262,9 @@ h1, h2, h3 {
   letter-spacing: -0.01em;
   text-wrap: balance;
 }
-h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red); }
+h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 12ch; color: var(--red); }
 .hero-text {
-  max-width: 34rem;
+  max-width: 40rem;
   margin: 1.3rem 0 1.6rem;
   font-size: clamp(1.05rem, 2vw, 1.3rem);
   line-height: 1.55;
@@ -743,10 +745,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 0.01ms !important; }
-  .cheddar-scroll { display: block; animation: cheddar-presence linear both !important; animation-timeline: scroll(root) !important; }
-  .cheddar-track::before { animation: cheddar-fill linear both !important; animation-timeline: scroll(root) !important; }
-  .cheddar-fries { animation: fries-drop linear both !important; animation-timeline: scroll(root) !important; }
-  .cheddar-scroll::after { animation: fries-drop linear both !important; animation-timeline: scroll(root) !important; }
+  .cheddar-scroll { display: block; }
   .marquee-track { animation: rail 24s linear infinite !important; }
   .reveal { opacity: 1; transform: none; }
 }
