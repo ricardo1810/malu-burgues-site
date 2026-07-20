@@ -12,6 +12,9 @@
   --display: "Bowlby One SC", Impact, sans-serif;
   --body: "Nunito Sans", system-ui, sans-serif;
   --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --page-max: 1360px;
+  --section-max: 1280px;
+  --text-max: 1040px;
 }
 
 * { box-sizing: border-box; }
@@ -41,7 +44,7 @@ body::before {
 .cheddar-scroll {
   position: fixed;
   top: 96px;
-  right: max(0.8rem, calc((100vw - 1180px) / 2 - 4.7rem));
+  right: max(0.8rem, calc((100vw - var(--page-max)) / 2 - 4.7rem));
   z-index: 25;
   width: 82px;
   height: calc(100dvh - 132px);
@@ -127,7 +130,7 @@ img, video { display: block; max-width: 100%; }
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1rem;
-  width: min(1180px, calc(100% - 32px));
+  width: min(var(--page-max), calc(100% - 32px));
   margin: 1rem auto 0;
   padding: 0.55rem;
   border: 1px solid rgba(23, 18, 15, 0.08);
@@ -205,7 +208,7 @@ img, video { display: block; max-width: 100%; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  width: min(1180px, calc(100% - 32px));
+  width: min(var(--page-max), calc(100% - 32px));
   min-height: calc(76dvh - 72px);
   margin: 0 auto;
   display: grid;
@@ -347,7 +350,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 .section-lead,
 .menu-title,
 .proof > h2 {
-  width: min(900px, calc(100% - 32px));
+  width: min(var(--text-max), calc(100% - 32px));
   margin: 0 auto 2rem;
   text-align: center;
 }
@@ -369,7 +372,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 }
 
 .combo-board {
-  width: min(1120px, calc(100% - 32px));
+  width: min(var(--section-max), calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
@@ -405,7 +408,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 
 .menu-strip { background: var(--cream-strong); }
 .category-wall {
-  width: min(1040px, calc(100% - 32px));
+  width: min(var(--section-max), calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -431,7 +434,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 
 .about-section { background: var(--cream); }
 .about-card {
-  width: min(1040px, calc(100% - 32px));
+  width: min(var(--section-max), calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -471,7 +474,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 
 .proof { background: var(--red); color: var(--white); }
 .proof-grid {
-  width: min(920px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -489,7 +492,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 .proof-grid p:nth-child(5) strong { color: var(--red); }
 
 .desserts {
-  width: min(1120px, calc(100% - 32px));
+  width: min(var(--section-max), calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 0.82fr 1.18fr;
@@ -552,7 +555,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 .dessert-tile:nth-child(2) { background: var(--orange); color: var(--white); }
 
 .gallery-stack {
-  width: min(1120px, calc(100% - 32px));
+  width: min(var(--section-max), calc(100% - 32px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1.2fr 0.8fr 0.8fr;
@@ -597,7 +600,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
 
 .location-card,
 .final-box {
-  width: min(920px, calc(100% - 32px));
+  width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
   border-radius: 2rem;
   padding: clamp(1.5rem, 5vw, 3rem);
@@ -628,7 +631,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 1.5rem;
-  padding: 2rem max(1rem, calc((100vw - 1180px) / 2));
+  padding: 2rem max(1rem, calc((100vw - var(--page-max)) / 2));
   background: var(--ink);
   color: var(--cream);
 }
@@ -724,7 +727,7 @@ h1 { font-size: clamp(2.85rem, 6.3vw, 5.8rem); max-width: 10ch; color: var(--red
   }
   .cheddar-track { right: 10px; width: 3px; }
   .cheddar-fries { width: 46px; }
-  .topbar, .hero { width: min(1180px, calc(100% - 24px)); }
+  .topbar, .hero { width: min(var(--page-max), calc(100% - 24px)); }
   h1 {
     font-size: clamp(2.35rem, 11.5vw, 3.2rem);
     line-height: 0.98;
